@@ -101,6 +101,6 @@
   "include": [
     "./*.js",
     "./api/*.ts",
-    "src/**/*.ts",
+    "src/**/*.ts", "src/controllers/mail.ts",
   ]
 }

@@ -17,15 +17,15 @@
         <td align="center" style="padding: 16px;">
           <img
             id="initialLogo"
-            src="{{logoBase64}}"
-            alt="Condhelp"
+            src="{{base64Logo}}"
+            alt="{{eventName}}"
             style="max-width: 256px; height: auto;"
           />
         </td>
       </tr>
       <tr>
         <td style="padding: 16px;">
-          <h1 id="emailTitle" style="font-size: 28px; font-weight: 600; color: #434546; text-align: center;">CONDHELP - Confirmação de inscrição!</h1>
+          <h1 id="emailTitle" style="font-size: 28px; font-weight: 600; color: #434546; text-align: center;">{{pageTitle}}</h1>
         </td>
       </tr>
       <tr>
@@ -33,26 +33,43 @@
           <hr />
           <table id="eventResume" role="presentation" width="100%" style="border-spacing: 0; border-collapse: collapse; width: 100%; margin-top: 20px;">
             <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
-              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Convidado:</td>
-              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">{{subscriberName}}</td>
+              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Evento:</td>
+              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">{{eventName}}</td>
             </tr>
             <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
-              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Código:</td>
-              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">{{code}}</td>
+              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Data:</td>
+              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">{{eventDate}}</td>
             </tr>
             <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
-              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Data do pedido:</td>
-              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">{{inscriptionDate}}</td>
-            </tr>
-            <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
-              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Data do evento:</td>
-              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">{{date}}</td>
+              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Horário:</td>
+              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">{{eventTime}}</td>
             </tr>
             <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
               <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Local:</td>
-              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">
-                <a href="{{localLink}}" target="_blank" style="text-decoration: none; color: blue">{{local}}</a>
-              </td>
+              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">{{eventLocal}}</td>
+            </tr>
+          </table>
+          <br/>
+          <table id="eventResume" role="presentation" width="100%" style="border-spacing: 0; border-collapse: collapse; width: 100%; margin-top: 20px;">
+            <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
+              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Transação:</td>
+              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">{{purchaseCode}}</td>
+            </tr>
+            <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
+              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Data da compra:</td>
+              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">{{purchaseTime}}</td>
+            </tr>
+            <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
+              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Iten(s) adquirido(s):</td>
+              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">{{purchaseValue}}</td>
+            </tr>
+            <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
+              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Valor:</td>
+              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">{{purchaseValue}}</td>
+            </tr>
+            <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
+              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Status:</td>
+              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">{{purchaseStatus}}</td>
             </tr>
           </table>
         </td>
