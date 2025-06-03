@@ -1,5 +1,6 @@
 import { Router, Request, Response } from "express"
 import * as MailController from "../controllers/mail"
+import * as SmsController from "../controllers/sms"
 
 import multer from "multer"
 import path from "path"
@@ -30,5 +31,6 @@ routes.get("/", (req: Request, res: Response) => {
 
 // @ts-ignore
 routes.post("/api/sendemail", cpUpload, MailController.sendEmail)
+routes.post("/api/sendcode", SmsController.sendCode)
 
 export default routes
