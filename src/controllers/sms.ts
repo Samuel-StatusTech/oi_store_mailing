@@ -13,7 +13,7 @@ export const sendCode = async (req: Request, res: Response) => {
     const { code, phone } = req.body
 
     if (code && phone) {
-      const message = `Seu código de validação para ListaPix é: ${code}.`
+      const message = `[ListaPix] Seu token de acesso ListaPix: ${code}.`
 
       const cleanPhone = `0${phone.replace(/\D/g, "")}`
 
@@ -30,19 +30,25 @@ export const sendCode = async (req: Request, res: Response) => {
           "Content-Type": "application/json",
           "auth-key": service.token,
         },
-      }).then(async (result) => {
-        const resData = await result.json()
-
-        if (resData.Success) {
-          res.status(200).json({ sended: true })
-        } else {
-          res.status(400).json({
-            sended: false,
-            error:
-              "Houve um erro ao enviar o código. Tente novamente mais tarde.",
-          })
-        }
       })
+        .then(async (result) => {
+          const resData = await result.json()
+
+          if (resData.Success) {
+            res.status(200).json({ sended: true })
+          } else {
+            res.status(400).json({
+              sended: false,
+              error:
+                "Houve um erro ao enviar o código. Tente novamente mais tarde.",
+            })
+          }
+        })
+        .catch((err) => {
+          throw new Error(
+            "Houve um erro ao enviar o código. Verifique o número e tente novamente."
+          )
+        })
     } else
       throw new Error(
         "Houve um erro ao enviar o código. Verifique o número e tente novamente."
