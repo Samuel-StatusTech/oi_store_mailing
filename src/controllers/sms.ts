@@ -13,7 +13,7 @@ export const sendCode = async (req: Request, res: Response) => {
     const { code, phone } = req.body
 
     if (code && phone) {
-      const message = `[ListaPix] Seu token de acesso ListaPix: ${code}.`
+      const message = `[ListaPix] Seu token de acesso: ${code}.`
 
       const cleanPhone = `0${phone.replace(/\D/g, "")}`
 
