@@ -51,7 +51,7 @@ export const sendEmail = async (req: MulterRequest, res: Response) => {
       eventTime: req.body.eventTime as string,
       eventLocal: req.body.eventLocal as string,
 
-      purchaseCode: req.body.purchaseCode as string,
+      purchaseCode: req.body.purchaseCode as string ?? "",
       purchaseTime: req.body.purchaseTime as string,
       purchaseValue: req.body.purchaseValue as string,
       purchaseItems: JSON.parse(req.body.purchaseItems),
