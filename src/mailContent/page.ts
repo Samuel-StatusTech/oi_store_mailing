@@ -36,7 +36,7 @@ export const generateContent = (data: {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Condhelp Mail</title>
+    <title>Lista PIX</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -52,7 +52,7 @@ export const generateContent = (data: {
           <td align="center" style="padding: 16px;">
             <img
               id="initialLogo"
-              src="${data.logoWebstoreUrl}"
+              src="cid:logo"
               alt="${data.eventName}"
               style="max-width: 256px; height: auto;"
             />

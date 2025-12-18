@@ -42,10 +42,12 @@ export const sendEmail = async (req: MulterRequest, res: Response) => {
       "utf8"
     )
 
+    const safeImage = base64Logo
+
     const mailInfo = {
       base64Logo: base64Logo,
       base64File: base64File,
-      logoWebstoreUrl: req.body.logoWebstoreUrl,
+      logoWebstoreUrl: safeImage as any,
 
       eventName: req.body.eventName as string,
       eventDate: req.body.eventDate as string,
@@ -109,6 +111,11 @@ export const sendEmail = async (req: MulterRequest, res: Response) => {
           contentType: file.mimetype,
           encoding: "base64",
         },
+        {
+          filename: "logo.png",
+          content: logo.buffer,
+          cid: "logo",
+        },
       ],
     }
 
@@ -116,6 +123,7 @@ export const sendEmail = async (req: MulterRequest, res: Response) => {
 
     res.status(200).json({ sended: true })
   } catch (error) {
+    console.log(error)
     res.status(400).json({ sended: false, error })
   }
 }
