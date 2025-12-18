@@ -76,7 +76,7 @@ export const generateContent = (data: {
           <span style="font-size: 16px; padding: 4px 0px; color: #61676a;">Obrigado por comprar conosco.</span>
           <br/>
           <br/>
-          <span style="font-size: 16px; padding: 4px 0px; font-weight: 600; color: #61676a;">Seus ingressos estão anexados neste neste e-mail.</span>
+          <span style="font-size: 16px; padding: 4px 0px; font-weight: 600; color: #61676a; word-wrap: normal;">Seus ingressos estão anexados neste neste e-mail.</span>
         </td>
       </tr>
       <tr>
