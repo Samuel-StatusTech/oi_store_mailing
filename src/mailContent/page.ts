@@ -64,6 +64,17 @@ export const generateContent = (data: {
       </tr>
       <tr>
         <td style="padding: 16px;">
+          <span style="font-size: 16px; font-weight: 600; color: #61676a;">Olá, nome-do-cliente!</span>
+          <br/>
+          <span style="font-size: 16px; font-weight: 600; color: #61676a;">Obrigado por comprar conosco.</span>
+          <br/>
+          <span style="font-size: 16px; font-weight: 700; color: #61676a;">Seus ingressos estão anexados neste neste e-mail.</span>
+          <br/>
+          <span style="font-size: 16px; font-weight: 600; color: #61676a;">Informações sobre o pedido</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 16px;">
           <hr />
           <table id="eventResume" role="presentation" width="100%" style="border-spacing: 0; border-collapse: collapse; width: 100%; margin-top: 20px;">
             <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
