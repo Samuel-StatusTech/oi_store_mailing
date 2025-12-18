@@ -68,19 +68,19 @@ export const generateContent = (data: {
       </tr>
       <tr>
         <td style="padding: 16px;">
-          <span style="font-size: 16px; font-weight: 600; color: #61676a;">Olá, ${
+          <span style="font-size: 16px; padding: 4px 0px; color: #61676a;">Olá, ${
             data.buyerName
           }!</span>
           <br/>
-          <span style="font-size: 16px; font-weight: 600; color: #61676a;">Obrigado por comprar conosco.</span>
+          <span style="font-size: 16px; padding: 4px 0px; color: #61676a;">Obrigado por comprar conosco.</span>
           <br/>
-          <span style="font-size: 16px; font-weight: 700; color: #61676a;">Seus ingressos estão anexados neste neste e-mail.</span>
-          <br/>
-          <span style="font-size: 16px; font-weight: 600; color: #61676a;">Informações sobre o pedido</span>
+          <span style="font-size: 16px; padding: 4px 0px; font-weight: 600; color: #61676a;">Seus ingressos estão anexados neste neste e-mail.</span>
         </td>
       </tr>
       <tr>
         <td style="padding: 16px;">
+          <span style="font-size: 16px; font-weight: 600; color: #61676a;">Informações sobre o pedido:</span>
+          <br/>
           <hr />
           <table id="eventResume" role="presentation" width="100%" style="border-spacing: 0; border-collapse: collapse; width: 100%; margin-top: 20px;">
             <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
@@ -150,9 +150,9 @@ export const generateContent = (data: {
           </table>
           <hr />
           <br/>
-          <span style="font-size: 16px; font-weight: 600; color: #61676a;">Ingressos vendidos sob responsabilidade de ${
+          <span style="font-size: 16px; color: #61676a;">Ingressos vendidos sob responsabilidade de <bold>${
             data.organizerName
-          } - CNPJ ${data.organizerDocument}.</span>
+          }</bold> - CNPJ <bold>${data.organizerDocument}.</bold></span>
         </td>
       </tr>
     </table>

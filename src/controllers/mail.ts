@@ -3,6 +3,7 @@ import nodemailer from "nodemailer"
 import { MailOptions } from "nodemailer/lib/json-transport"
 
 import { generateContent } from "../mailContent/page"
+import { formatCNPJ } from "../utils/formatCNPJ"
 
 interface MulterRequest extends Request {
   files: {
@@ -54,7 +55,7 @@ export const sendEmail = async (req: MulterRequest, res: Response) => {
       buyerName: req.body.buyerName as string,
 
       organizerName: req.body.organizerName as string,
-      organizerDocument: req.body.organizerDocument as string,
+      organizerDocument: formatCNPJ(req.body.organizerDocument as string),
 
       purchaseCode: (req.body.purchaseCode as string) ?? "",
       purchaseTime: req.body.purchaseTime as string,
