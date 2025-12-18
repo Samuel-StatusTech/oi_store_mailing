@@ -152,9 +152,7 @@ export const generateContent = (data: {
             </tr>
           </table>
           <br/>
-          <br/>
-          <br/>
-          <span style="font-size: 16px; color: #61676a;">Ingressos vendidos sob responsabilidade de <b>${
+          <span style="font-size: 16px; padding-top: 8px; color: #61676a;">Ingressos vendidos sob responsabilidade de <b>${
             data.organizerName
           }</b> - CNPJ <b>${data.organizerDocument}.</b></span>
         </td>
