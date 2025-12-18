@@ -21,6 +21,10 @@ export const generateContent = (data: {
   eventTime: string
   eventLocal: string
 
+  buyerName: string
+  organizerName: string
+  organizerDocument: string
+
   purchaseCode: string
   purchaseTime: string
   purchaseValue: string
@@ -64,7 +68,9 @@ export const generateContent = (data: {
       </tr>
       <tr>
         <td style="padding: 16px;">
-          <span style="font-size: 16px; font-weight: 600; color: #61676a;">Olá, nome-do-cliente!</span>
+          <span style="font-size: 16px; font-weight: 600; color: #61676a;">Olá, ${
+            data.buyerName
+          }!</span>
           <br/>
           <span style="font-size: 16px; font-weight: 600; color: #61676a;">Obrigado por comprar conosco.</span>
           <br/>
@@ -78,26 +84,26 @@ export const generateContent = (data: {
           <hr />
           <table id="eventResume" role="presentation" width="100%" style="border-spacing: 0; border-collapse: collapse; width: 100%; margin-top: 20px;">
             <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
-              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Evento:</td>
-              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">${
+              <td class="label" style="padding: 4px 0; color: #61676a; min-width: 120px;">Evento:</td>
+              <td class="value" style="padding: 4px 0; font-weight: 600; color: #61676a;">${
                 data.eventName
               }</td>
             </tr>
             <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
-              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Data:</td>
-              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">${
+              <td class="label" style="padding: 4px 0; color: #61676a; min-width: 120px;">Data:</td>
+              <td class="value" style="padding: 4px 0; font-weight: 600; color: #61676a;">${
                 data.eventDate
               }</td>
             </tr>
             <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
-              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Horário:</td>
-              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">${
+              <td class="label" style="padding: 4px 0; color: #61676a; min-width: 120px;">Horário:</td>
+              <td class="value" style="padding: 4px 0; font-weight: 600; color: #61676a;">${
                 data.eventTime
               }</td>
             </tr>
             <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
-              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Local:</td>
-              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">${
+              <td class="label" style="padding: 4px 0; color: #61676a; min-width: 120px;">Local:</td>
+              <td class="value" style="padding: 4px 0; font-weight: 600; color: #61676a;">${
                 data.eventLocal
               }</td>
             </tr>
@@ -105,14 +111,14 @@ export const generateContent = (data: {
           <br/>
           <table id="eventResume" role="presentation" width="100%" style="border-spacing: 0; border-collapse: collapse; width: 100%; margin-top: 20px;">
             <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
-              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Transação:</td>
-              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">${
+              <td class="label" style="padding: 4px 0; color: #61676a; min-width: 120px;">Transação:</td>
+              <td class="value" style="padding: 4px 0; font-weight: 600; color: #61676a;">${
                 data.purchaseCode
               }</td>
             </tr>
             <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
-              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Data da compra:</td>
-              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">${
+              <td class="label" style="padding: 4px 0; color: #61676a; min-width: 120px;">Data da compra:</td>
+              <td class="value" style="padding: 4px 0; font-weight: 600; color: #61676a;">${
                 data.purchaseTime
               }</td>
             </tr>
@@ -120,28 +126,33 @@ export const generateContent = (data: {
               .map(
                 (i, iK) =>
                   `<tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
-                <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">${
+                <td class="label" style="padding: 4px 0; color: #61676a; min-width: 120px;">${
                   iK === 0 ? "Iten(s) adquirido(s):" : "                     "
                 }</td>
-                <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">${
+                <td class="value" style="padding: 4px 0; font-weight: 600; color: #61676a;">${
                   i.text
                 }</td>
               </tr>`
               )
               .join("")}
             <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
-              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Valor:</td>
-              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">${formatMoney(
+              <td class="label" style="padding: 4px 0; color: #61676a; min-width: 120px;">Valor:</td>
+              <td class="value" style="padding: 4px 0; font-weight: 600; color: #61676a;">${formatMoney(
                 +data.purchaseValue
               )}</td>
             </tr>
             <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
-              <td class="label" style="padding: 8px 0; color: #61676a; min-width: 120px;">Status:</td>
-              <td class="value" style="padding: 8px 0; font-weight: 600; color: #61676a;">${
+              <td class="label" style="padding: 4px 0; color: #61676a; min-width: 120px;">Status:</td>
+              <td class="value" style="padding: 4px 0; font-weight: 600; color: #61676a;">${
                 data.purchaseStatus
               }</td>
             </tr>
           </table>
+          <hr />
+          <br/>
+          <span style="font-size: 16px; font-weight: 600; color: #61676a;">Ingressos vendidos sob responsabilidade de ${
+            data.organizerName
+          } - CNPJ ${data.organizerDocument}.</span>
         </td>
       </tr>
     </table>
