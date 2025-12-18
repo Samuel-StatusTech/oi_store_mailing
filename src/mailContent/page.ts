@@ -72,16 +72,19 @@ export const generateContent = (data: {
             data.buyerName
           }!</span>
           <br/>
+          <br/>
           <span style="font-size: 16px; padding: 4px 0px; color: #61676a;">Obrigado por comprar conosco.</span>
+          <br/>
           <br/>
           <span style="font-size: 16px; padding: 4px 0px; font-weight: 600; color: #61676a;">Seus ingressos estão anexados neste neste e-mail.</span>
         </td>
       </tr>
       <tr>
         <td style="padding: 16px;">
+          <hr />
+          <br/>
           <span style="font-size: 16px; font-weight: 600; color: #61676a;">Informações sobre o pedido:</span>
           <br/>
-          <hr />
           <table id="eventResume" role="presentation" width="100%" style="border-spacing: 0; border-collapse: collapse; width: 100%; margin-top: 20px;">
             <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
               <td class="label" style="padding: 4px 0; color: #61676a; min-width: 120px;">Evento:</td>
@@ -148,11 +151,12 @@ export const generateContent = (data: {
               }</td>
             </tr>
           </table>
-          <hr />
           <br/>
-          <span style="font-size: 16px; color: #61676a;">Ingressos vendidos sob responsabilidade de <bold>${
+          <br/>
+          <br/>
+          <span style="font-size: 16px; color: #61676a;">Ingressos vendidos sob responsabilidade de <b>${
             data.organizerName
-          }</bold> - CNPJ <bold>${data.organizerDocument}.</bold></span>
+          }</b> - CNPJ <b>${data.organizerDocument}.</b></span>
         </td>
       </tr>
     </table>
