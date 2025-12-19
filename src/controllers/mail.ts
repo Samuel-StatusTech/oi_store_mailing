@@ -62,6 +62,7 @@ export const sendEmail = async (req: MulterRequest, res: Response) => {
       purchaseCode: (req.body.purchaseCode as string) ?? "",
       purchaseTime: req.body.purchaseTime as string,
       purchaseValue: req.body.purchaseValue as string,
+      purchaseTaxes: req.body.purchaseTaxes as string,
       purchaseItems: JSON.parse(req.body.purchaseItems),
       purchaseStatus: req.body.purchaseStatus as string,
 
