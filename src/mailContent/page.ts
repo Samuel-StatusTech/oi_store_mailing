@@ -145,12 +145,6 @@ export const generateContent = (data: {
                 +data.purchaseValue
               )}</td>
             </tr>
-            <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
-              <td class="label" style="padding: 4px 0; color: #61676a; min-width: 120px;">Valor:</td>
-              <td class="value" style="padding: 4px 0; font-weight: 600; color: #61676a;">${formatMoney(
-                +data.purchaseValue
-              )}</td>
-            </tr>
             ${
               +(data.purchaseTaxes ?? "0") > 0
                 ? `
