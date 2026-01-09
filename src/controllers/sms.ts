@@ -2,12 +2,9 @@ import { Request, Response } from "express"
 
 export const sendCode = async (req: Request, res: Response) => {
   try {
-    const serviceToken = process.env.SMS_SERVICE_ACCOUNT_API_KEY as string
-    const serviceUrl = process.env.SMS_SERVICE_URL as string
-
     const service = {
-      token: serviceToken,
-      url: serviceUrl,
+      baseUrl: process.env.WHATSAPP_SERVICE_BASE_URL as string,
+      clientToken: process.env.WHATSAPP_SERVICE_CLIENT_TOKEN as string,
     }
 
     const { code, phone } = req.body
@@ -15,34 +12,28 @@ export const sendCode = async (req: Request, res: Response) => {
     if (code && phone) {
       const message = `[ListaPix] Seu token de acesso: ${code}.`
 
-      const cleanPhone = `0${phone.replace(/\D/g, "")}`
+      const requestHeaders = new Headers()
 
-      const body = {
-        Sender: "webstore",
-        Receivers: cleanPhone, // Destinatários, separados por vírgula, formato: DDD + Número
-        Content: message, // Conteúdo da  mensagem
-      }
+      requestHeaders.append("Content-Type", "application/json")
+      requestHeaders.append("Client-Token", service.clientToken)
 
-      await fetch(service.url, {
+      await fetch(`${service.baseUrl}/send-text`, {
         method: "POST",
-        body: JSON.stringify(body),
-        headers: {
-          "Content-Type": "application/json",
-          "auth-key": service.token,
-        },
+        body: JSON.stringify({
+          phone,
+          message,
+        }),
+        headers: requestHeaders,
       })
-        .then(async (result) => {
-          const resData = await result.json()
+        .then(async (response) => {
+          const result = await response.json()
+          const success = response.status === 200 && !!result.messageId
 
-          if (resData.Success) {
-            res.status(200).json({ sended: true })
-          } else {
-            res.status(400).json({
-              sended: false,
-              error:
-                "Houve um erro ao enviar o código. Tente novamente mais tarde.",
-            })
-          }
+          if (success) res.status(200).json({ sended: success })
+          else
+            throw new Error(
+              "Houve um erro ao enviar o código. Tente novamente mais tarde"
+            )
         })
         .catch((err) => {
           throw new Error(

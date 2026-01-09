@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express"
 import * as MailController from "../controllers/mail"
 import * as SmsController from "../controllers/sms"
+import * as WhatsappController from "../controllers/whatsapp"
 
 import multer from "multer"
 import path from "path"
@@ -32,5 +33,6 @@ routes.get("/", (req: Request, res: Response) => {
 // @ts-ignore
 routes.post("/api/sendemail", cpUpload, MailController.sendEmail)
 routes.post("/api/sendcode", SmsController.sendCode)
+routes.post("/api/sendwhatsapp", WhatsappController.sendWhatsapp)
 
 export default routes
