@@ -14,7 +14,7 @@ export const generateContent = (data: {
   pageTitle: string
   base64Logo: string | null
   base64File: string
-  logoWebstoreUrl: string
+  logoWebstoreUrl: string | null
 
   eventName: string
   eventDate: string

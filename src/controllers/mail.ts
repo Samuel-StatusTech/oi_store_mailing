@@ -27,13 +27,13 @@ export const sendEmail = async (req: MulterRequest, res: Response) => {
     const file = req.files?.["file"]?.[0] ?? null
     const logo = req.files?.["logo"]?.[0] ?? null
 
-    if (!file || !logo) {
+    if (!file) {
       return res
         .status(400)
         .json({ error: "Arquivos file e logo são necessários" })
     }
 
-    const base64Logo = `data:image/png;base64,${logo.buffer.toString("base64")}`
+    const base64Logo = !logo ? null : `data:image/png;base64,${logo.buffer.toString("base64")}`
     const base64File = `data:application/pdf;base64,${file.buffer.toString(
       "base64"
     )}`
@@ -47,7 +47,7 @@ export const sendEmail = async (req: MulterRequest, res: Response) => {
     const mailInfo = {
       base64Logo: base64Logo,
       base64File: base64File,
-      logoWebstoreUrl: safeImage as any,
+      logoWebstoreUrl: safeImage,
 
       eventName: req.body.eventName as string,
       eventDate: req.body.eventDate as string,
