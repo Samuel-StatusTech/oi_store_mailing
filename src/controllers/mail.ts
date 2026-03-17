@@ -34,7 +34,7 @@ export const sendEmail = async (req: MulterRequest, res: Response) => {
 
     const logo = req.files?.["logo"]?.[0] ?? null
 
-    if (logo) {
+    if (!!logo) {
       base64Logo = `data:image/png;base64,${logo.buffer.toString("base64")}`
     }
     const base64File = `data:application/pdf;base64,${file.buffer.toString(
@@ -46,8 +46,6 @@ export const sendEmail = async (req: MulterRequest, res: Response) => {
     )
 
     const mailInfo = {
-      base64Logo: base64Logo,
-      base64File: base64File,
       logoWebstoreUrl: base64Logo,
 
       eventName: req.body.eventName as string,

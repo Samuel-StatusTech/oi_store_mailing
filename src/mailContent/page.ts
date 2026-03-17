@@ -12,8 +12,6 @@ export const formatMoney = (v: number) => {
 
 export const generateContent = (data: {
   pageTitle: string
-  base64Logo: string | null
-  base64File: string
   logoWebstoreUrl: string | null
 
   eventName: string
@@ -32,6 +30,19 @@ export const generateContent = (data: {
   purchaseItems: { text: string; total: number }[]
   purchaseStatus: string
 }) => {
+  const logoComponent = !!data.logoWebstoreUrl
+    ? `<tr>
+          <td align="center" style="padding: 16px;">
+            <img
+              id="initialLogo"
+              src="cid:logo"
+              alt="${data.eventName}"
+              style="max-width: 256px; height: auto;"
+            />
+          </td>
+        </tr>`
+    : null
+
   const htmlElement = `<!DOCTYPE html>
 <html lang="en">
   <head>
@@ -47,19 +58,7 @@ export const generateContent = (data: {
   </head>
   <body style="margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', Arial, sans-serif; background-color: #dedede; padding: 24px;">
     <table role="presentation" width="100%" style="border-spacing: 0; border-collapse: collapse; width: 80vw; max-width: 600px; margin: 0 auto; background-color: white; border-radius: 16px;">
-    ${
-      data.logoWebstoreUrl &&
-      `<tr>
-          <td align="center" style="padding: 16px;">
-            <img
-              id="initialLogo"
-              src="cid:logo"
-              alt="${data.eventName}"
-              style="max-width: 256px; height: auto;"
-            />
-          </td>
-        </tr>`
-    }
+    ${logoComponent || ""}
       <tr>
         <td style="padding: 16px;">
           <h1 id="emailTitle" style="font-size: 28px; font-weight: 600; color: #434546; text-align: center;">${
@@ -136,13 +135,13 @@ export const generateContent = (data: {
                 <td class="value" style="padding: 4px 0; font-weight: 600; color: #61676a;">${
                   i.text
                 }</td>
-              </tr>`
+              </tr>`,
               )
               .join("")}
             <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
               <td class="label" style="padding: 4px 0; color: #61676a; min-width: 120px;">Valor:</td>
               <td class="value" style="padding: 4px 0; font-weight: 600; color: #61676a;">${formatMoney(
-                +data.purchaseValue
+                +data.purchaseValue,
               )}</td>
             </tr>
             ${
@@ -151,7 +150,7 @@ export const generateContent = (data: {
               <tr class="infoRow" style="border-spacing: 0; border-collapse: collapse;">
                 <td class="label" style="padding: 4px 0; color: #61676a; min-width: 120px;">Taxas:</td>
                 <td class="value" style="padding: 4px 0; font-weight: 600; color: #61676a;">${formatMoney(
-                  +data.purchaseTaxes
+                  +data.purchaseTaxes,
                 )}</td>
               </tr>
               `
