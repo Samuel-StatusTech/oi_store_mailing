@@ -25,29 +25,30 @@ export const sendEmail = async (req: MulterRequest, res: Response) => {
     }
 
     const file = req.files?.["file"]?.[0] ?? null
-    const logo = req.files?.["logo"]?.[0] ?? null
 
     if (!file) {
-      return res
-        .status(400)
-        .json({ error: "Arquivos file e logo são necessários" })
+      return res.status(400).json({ error: "Arquivo file é necessários" })
     }
 
-    const base64Logo = !logo ? null : `data:image/png;base64,${logo.buffer.toString("base64")}`
+    let base64Logo = null
+
+    const logo = req.files?.["logo"]?.[0] ?? null
+
+    if (logo) {
+      base64Logo = `data:image/png;base64,${logo.buffer.toString("base64")}`
+    }
     const base64File = `data:application/pdf;base64,${file.buffer.toString(
-      "base64"
+      "base64",
     )}`
 
     const originalFileName = Buffer.from(file.originalname, "latin1").toString(
-      "utf8"
+      "utf8",
     )
-
-    const safeImage = base64Logo
 
     const mailInfo = {
       base64Logo: base64Logo,
       base64File: base64File,
-      logoWebstoreUrl: safeImage,
+      logoWebstoreUrl: base64Logo,
 
       eventName: req.body.eventName as string,
       eventDate: req.body.eventDate as string,
@@ -112,11 +113,15 @@ export const sendEmail = async (req: MulterRequest, res: Response) => {
           contentType: file.mimetype,
           encoding: "base64",
         },
-        {
-          filename: "logo.png",
-          content: logo.buffer,
-          cid: "logo",
-        },
+        ...(logo
+          ? [
+              {
+                filename: "logo.png",
+                content: logo.buffer,
+                cid: "logo",
+              },
+            ]
+          : []),
       ],
     }
 
