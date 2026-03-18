@@ -37,7 +37,8 @@ export const generateContent = (data: {
               id="initialLogo"
               src="cid:logo"
               alt="${data.eventName}"
-              style="max-width: 256px; height: auto;"
+              style="display: block; max-width: 256px; height: auto;"
+              width="256"
             />
           </td>
         </tr>`
