@@ -170,7 +170,10 @@ export const generateContent = (data: EmailContentProps) => {
           <br/>
           <span style="font-size: 16px; padding-top: 8px; color: #61676a;">Ingressos vendidos sob responsabilidade de <b>${
             data.organizerName
-          }</b> - ${data.organizerDocumentType} <b>${data.organizerDocument}.</b></span>
+          }</b>
+          <br/>
+          ${data.organizerDocumentType} <b>${data.organizerDocument}.</b>
+          </span>
         </td>
       </tr>
     </table>
