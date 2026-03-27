@@ -10,7 +10,7 @@ export const formatMoney = (v: number) => {
   return value
 }
 
-export const generateContent = (data: {
+export type EmailContentProps = {
   pageTitle: string
   logoWebstoreUrl: string | null
 
@@ -22,6 +22,7 @@ export const generateContent = (data: {
   buyerName: string
   organizerName: string
   organizerDocument: string
+  organizerDocumentType: string
 
   purchaseCode: string
   purchaseTime: string
@@ -29,7 +30,9 @@ export const generateContent = (data: {
   purchaseTaxes: string
   purchaseItems: { text: string; total: number }[]
   purchaseStatus: string
-}) => {
+}
+
+export const generateContent = (data: EmailContentProps) => {
   const logoComponent = !!data.logoWebstoreUrl
     ? `<tr>
           <td align="center" style="padding: 16px;">
@@ -167,7 +170,7 @@ export const generateContent = (data: {
           <br/>
           <span style="font-size: 16px; padding-top: 8px; color: #61676a;">Ingressos vendidos sob responsabilidade de <b>${
             data.organizerName
-          }</b> - CNPJ <b>${data.organizerDocument}.</b></span>
+          }</b> - ${data.organizerDocumentType} <b>${data.organizerDocument}.</b></span>
         </td>
       </tr>
     </table>

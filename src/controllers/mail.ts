@@ -2,8 +2,8 @@ import { Request, Response } from "express"
 import nodemailer from "nodemailer"
 import { MailOptions } from "nodemailer/lib/json-transport"
 
-import { generateContent } from "../mailContent/page"
-import { formatCNPJ } from "../utils/formatCNPJ"
+import { EmailContentProps, generateContent } from "../mailContent/page"
+import { formatCPFandCNPJ } from "../utils/formatCPFandCNPJ"
 
 interface MulterRequest extends Request {
   files: {
@@ -24,10 +24,12 @@ export const sendEmail = async (req: MulterRequest, res: Response) => {
       emailTo: process.env.SMTP_EMAIL_TO,
     }
 
+    const targetEmail = req.body.targetEmail as string ?? ""
+
     const file = req.files?.["file"]?.[0] ?? null
 
     if (!file) {
-      return res.status(400).json({ error: "Arquivo file é necessários" })
+      return res.status(400).json({ error: "Arquivo file é necessário" })
     }
 
     let base64Logo = null
@@ -45,8 +47,10 @@ export const sendEmail = async (req: MulterRequest, res: Response) => {
       "utf8",
     )
 
-    const mailInfo = {
+    const mailInfo: EmailContentProps = {
       logoWebstoreUrl: base64Logo,
+
+      pageTitle: "",
 
       eventName: req.body.eventName as string,
       eventDate: req.body.eventDate as string,
@@ -56,7 +60,8 @@ export const sendEmail = async (req: MulterRequest, res: Response) => {
       buyerName: req.body.buyerName as string,
 
       organizerName: req.body.organizerName as string,
-      organizerDocument: formatCNPJ(req.body.organizerDocument as string),
+      organizerDocument: formatCPFandCNPJ(req.body.organizerDocument as string),
+      organizerDocumentType: (req.body.organizerDocument as string).replace(/\D/g, "").length <= 11 ? "CPF" : "CNPJ",
 
       purchaseCode: (req.body.purchaseCode as string) ?? "",
       purchaseTime: req.body.purchaseTime as string,
@@ -64,8 +69,6 @@ export const sendEmail = async (req: MulterRequest, res: Response) => {
       purchaseTaxes: req.body.purchaseTaxes as string,
       purchaseItems: JSON.parse(req.body.purchaseItems),
       purchaseStatus: req.body.purchaseStatus as string,
-
-      targetEmail: req.body.targetEmail as string,
     }
 
     if (
@@ -95,12 +98,12 @@ export const sendEmail = async (req: MulterRequest, res: Response) => {
     })
 
     // HTML
-    const replacements = { ...mailInfo, pageTitle: title }
+    const replacements: EmailContentProps = { ...mailInfo, pageTitle: title }
     const html = generateContent(replacements)
 
     const mail: MailOptions = {
       from: "ListaPix",
-      to: mailInfo.targetEmail.trim(),
+      to: targetEmail.trim(),
       subject: title,
       html: html,
       encoding: "utf-8",
